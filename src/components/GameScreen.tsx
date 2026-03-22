@@ -10,6 +10,7 @@ interface GameScreenProps {
   currentIndex: number;
   currentInput: string;
   feedback: FeedbackType;
+  timeLeft: number;
   onNumberPress: (n: number) => void;
   onBackspace: () => void;
   onSubmit: () => void;
@@ -20,14 +21,26 @@ export function GameScreen({
   currentIndex,
   currentInput,
   feedback,
+  timeLeft,
   onNumberPress,
   onBackspace,
   onSubmit,
 }: GameScreenProps) {
+  const timerColor =
+    timeLeft >= 20 ? 'bg-green-500 text-white' :
+    timeLeft >= 10 ? 'bg-yellow-400 text-yellow-900' :
+    timeLeft >= 5  ? 'bg-orange-500 text-white' :
+                     'bg-red-600 text-white animate-pulse';
+
   return (
     <div className="min-h-screen bg-sky-300 flex flex-col items-center justify-between p-6 gap-6">
-      <div className="w-full max-w-md pt-2">
-        <ProgressBar current={currentIndex} total={SESSION_LENGTH} />
+      <div className="w-full max-w-md pt-2 flex items-center gap-3">
+        <div className="flex-1">
+          <ProgressBar current={currentIndex} total={SESSION_LENGTH} />
+        </div>
+        <div className={`min-w-[3rem] h-12 rounded-2xl flex items-center justify-center text-2xl font-black shadow-md px-3 ${timerColor}`}>
+          {timeLeft}
+        </div>
       </div>
 
       <div className="flex-1 flex items-center justify-center w-full max-w-md">

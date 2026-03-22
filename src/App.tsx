@@ -11,6 +11,7 @@ function App() {
     currentInput,
     feedback,
     results,
+    timeLeft,
     startGame,
     resetGame,
     handleNumberPress,
@@ -29,6 +30,7 @@ function App() {
         currentIndex={currentIndex}
         currentInput={currentInput}
         feedback={feedback}
+        timeLeft={timeLeft}
         onNumberPress={handleNumberPress}
         onBackspace={handleBackspace}
         onSubmit={handleSubmit}

@@ -6,6 +6,7 @@ import { useSound } from './useSound';
 
 const FEEDBACK_DURATION_MS = 1500;
 export const SESSION_LENGTH = 10;
+const QUESTION_TIME_LIMIT = 30;
 
 interface GameState {
   phase: GamePhase;
@@ -27,7 +28,34 @@ const initialState: GameState = {
 
 export function useGameLogic() {
   const [state, setState] = useState<GameState>(initialState);
+  const [timeLeft, setTimeLeft] = useState(QUESTION_TIME_LIMIT);
   const { playYay, playBuzzer } = useSound();
+
+  // Reset timer whenever a new question starts
+  useEffect(() => {
+    if (state.phase === 'playing') setTimeLeft(QUESTION_TIME_LIMIT);
+  }, [state.currentIndex, state.phase]);
+
+  // Countdown — only while playing
+  useEffect(() => {
+    if (state.phase !== 'playing') return;
+    if (timeLeft <= 0) {
+      playBuzzer();
+      setState(prev => {
+        if (prev.phase !== 'playing') return prev;
+        const problem = prev.problems[prev.currentIndex];
+        return {
+          ...prev,
+          phase: 'feedback',
+          feedback: 'wrong',
+          results: [...prev.results, { problem, userAnswer: null, correct: false }],
+        };
+      });
+      return;
+    }
+    const id = setTimeout(() => setTimeLeft(t => t - 1), 1000);
+    return () => clearTimeout(id);
+  }, [state.phase, timeLeft, playBuzzer]);
 
   // Auto-advance after feedback — moved to useEffect to avoid StrictMode double-timer bug
   useEffect(() => {
@@ -96,6 +124,7 @@ export function useGameLogic() {
     currentInput: state.currentInput,
     feedback: state.feedback,
     results: state.results,
+    timeLeft,
     startGame,
     resetGame,
     handleNumberPress,
