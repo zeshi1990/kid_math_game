@@ -6,7 +6,7 @@ import { useSound } from './useSound';
 
 const FEEDBACK_DURATION_MS = 1500;
 export const SESSION_LENGTH = 10;
-const QUESTION_TIME_LIMIT = 30;
+const QUESTION_TIME_LIMIT = 60;
 
 interface GameState {
   phase: GamePhase;

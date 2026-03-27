@@ -27,9 +27,9 @@ export function GameScreen({
   onSubmit,
 }: GameScreenProps) {
   const timerColor =
-    timeLeft >= 20 ? 'bg-green-500 text-white' :
-    timeLeft >= 10 ? 'bg-yellow-400 text-yellow-900' :
-    timeLeft >= 5  ? 'bg-orange-500 text-white' :
+    timeLeft >= 40 ? 'bg-green-500 text-white' :
+    timeLeft >= 20 ? 'bg-yellow-400 text-yellow-900' :
+    timeLeft >= 10 ? 'bg-orange-500 text-white' :
                      'bg-red-600 text-white animate-pulse';
 
   return (
