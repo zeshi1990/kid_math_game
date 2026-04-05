@@ -6,7 +6,8 @@ const MAX_SESSIONS = 10;
 export function loadHistory(): SessionRecord[] {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]') as SessionRecord[];
-  } catch {
+  } catch (err) {
+    console.error('[mathgame] Failed to parse session history from localStorage:', err);
     return [];
   }
 }

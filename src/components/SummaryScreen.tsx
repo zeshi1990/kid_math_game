@@ -1,4 +1,5 @@
 import type { SessionResult } from '../types/game';
+import { operatorSymbol } from '../utils/formatters';
 
 interface SummaryScreenProps {
   results: SessionResult[];
@@ -36,7 +37,7 @@ export function SummaryScreen({ results, onPlayAgain }: SummaryScreenProps) {
           <div className="text-xl font-bold text-purple-800 mb-3">Review:</div>
           <div className="flex flex-col gap-2 max-h-56 overflow-y-auto">
             {results.map((r, i) => {
-              const sym = r.problem.operator === '+' ? '+' : '−';
+              const sym = operatorSymbol(r.problem.operator);
               return (
                 <div key={i} className={`flex justify-between items-center rounded-xl px-4 py-2 text-lg font-bold
                   ${r.correct ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>

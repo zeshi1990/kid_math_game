@@ -31,6 +31,7 @@ function App() {
         currentInput={currentInput}
         feedback={feedback}
         timeLeft={timeLeft}
+        results={results}
         onNumberPress={handleNumberPress}
         onBackspace={handleBackspace}
         onSubmit={handleSubmit}

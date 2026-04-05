@@ -7,8 +7,6 @@ export function useSound() {
   useEffect(() => {
     yayRef.current = new Audio('/sounds/yay.mp3');
     buzzerRef.current = new Audio('/sounds/buzzer.mp3');
-    yayRef.current.load();
-    buzzerRef.current.load();
   }, []);
 
   const play = (ref: React.MutableRefObject<HTMLAudioElement | null>) => {

@@ -1,4 +1,5 @@
 import type { Problem } from '../types/game';
+import { operatorSymbol } from '../utils/formatters';
 
 interface ProblemDisplayProps {
   problem: Problem;
@@ -8,7 +9,7 @@ interface ProblemDisplayProps {
 
 export function ProblemDisplay({ problem, currentInput, animationKey }: ProblemDisplayProps) {
   const answer = currentInput !== '' ? currentInput : '?';
-  const symbol = problem.operator === '+' ? '+' : '−';
+  const symbol = operatorSymbol(problem.operator);
 
   return (
     <div key={animationKey} className="fade-slide-in text-center">

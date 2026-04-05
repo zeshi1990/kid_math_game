@@ -20,6 +20,7 @@ export function NumberPad({ onNumberPress, onBackspace, onSubmit, currentInput, 
             <button
               key={n}
               onClick={() => onNumberPress(n)}
+              aria-label={`Answer ${n}`}
               className={`${btnBase} bg-orange-400 hover:bg-orange-300 text-purple-900 border-4 border-orange-600`}
             >
               {n}
@@ -32,6 +33,7 @@ export function NumberPad({ onNumberPress, onBackspace, onSubmit, currentInput, 
           <button
             key={n}
             onClick={() => onNumberPress(n)}
+            aria-label={`Answer ${n}`}
             className={`${btnBase} bg-yellow-400 hover:bg-yellow-300 text-purple-900 border-4 border-yellow-600`}
           >
             {n}
@@ -39,6 +41,7 @@ export function NumberPad({ onNumberPress, onBackspace, onSubmit, currentInput, 
         ))}
         <button
           onClick={onBackspace}
+          aria-label="Clear answer"
           className={`${btnBase} bg-red-300 hover:bg-red-200 text-red-900 border-4 border-red-500`}
           title="Clear"
         >
@@ -48,6 +51,7 @@ export function NumberPad({ onNumberPress, onBackspace, onSubmit, currentInput, 
       <button
         onClick={onSubmit}
         disabled={currentInput === ''}
+        aria-label="Check answer"
         className="w-full py-5 rounded-3xl text-4xl font-black shadow-lg transition-all select-none
           bg-green-500 hover:bg-green-400 text-white border-4 border-green-700
           disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100

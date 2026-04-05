@@ -1,15 +1,16 @@
 interface ProgressBarProps {
   current: number; // 0-based index
   total: number;
+  correctCount: number; // number of correct answers so far
 }
 
-export function ProgressBar({ current, total }: ProgressBarProps) {
+export function ProgressBar({ current, total, correctCount }: ProgressBarProps) {
   const pct = ((current) / total) * 100;
   return (
     <div className="w-full">
       <div className="flex justify-between text-purple-900 font-bold text-lg mb-1">
         <span>Question {current + 1} of {total}</span>
-        <span>{current} ✅</span>
+        <span>{correctCount} ✅</span>
       </div>
       <div className="w-full bg-purple-200 rounded-full h-4 overflow-hidden">
         <div
